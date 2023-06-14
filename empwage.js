@@ -10,6 +10,7 @@ let empWage=0,totalEmpWage=0;
 
 let empDailyWageArray=new Array();
 let empWageUsingMap=new Map();
+let empDayWithHrsMap=new Map();
 //let empInput=Math.floor((Math.random()*10)%3);
 
 function GetEmpHours(empInput)
@@ -34,6 +35,8 @@ while(day<=MAX_WORKING_DAYS && totalEmpHrs<=MAX_WORKING_HRS)
     let empInput=Math.floor((Math.random()*10)%3);
     empWage=EMP_RATE_PER_HR*GetEmpHours(empInput);
     totalEmpHrs+=empHrs;
+    empWageUsingMap.set(day,empWage);
+    empDayWithHrsMap.set(day,empHrs);
     empDailyWageArray.push(empWage);
     day++;
 }
@@ -107,5 +110,28 @@ console.log("Daily wage in Map object : ");
 console.log(empWageUsingMap);
 
 console.log("total wage using Map oject :");
-let totalWageMap=Array.from(empWageUsingMap.values());
-console.log(totalWageMap.reduce(getTotalWageUsingReduce,0));
+let totalWageByMap=Array.from(empWageUsingMap.values());
+console.log(totalWageByMap.reduce(getTotalWageUsingReduce,0));
+
+
+let totalWageByArrow=Array.from(totalWageByMap.values()).filter(wage=>wage>0).reduce(getTotalWageUsingReduce,0);
+let totalHours=(totalH,dailyWage)=>
+{
+    return totalH+dailyWage;
+}
+let totalHesByArrow=Array.from(empDayWithHrsMap.values()).reduce(totalHours,0);
+console.log("Using 'Arrow' function => total Wage is: "+totalWageByArrow+" total hours worked is : "+totalHesByArrow);
+
+let nonWorkingDays=new Array();
+let fullWorkingDays=new Array();
+let partWorkingDays=new Array();
+//Storing days
+empDayWithHrsMap.forEach((value,key,map)=>{
+    if(value==0) nonWorkingDays.push(key);
+    else if(value==8) fullWorkingDays.push(key);
+    else partWorkingDays.push(key);
+});
+console.log("Showing the full workings days, part working days and no working days");
+console.log("Full working days = "+fullWorkingDays);
+console.log("Part working days = "+partWorkingDays);
+console.log("Non working days ="+nonWorkingDays);
