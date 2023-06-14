@@ -9,6 +9,7 @@ let empHrs=0,totalEmpHrs=0;
 let empWage=0,totalEmpWage=0;
 
 let empDailyWageArray=new Array();
+let dayWithWageAndHrsArray=new Array();
 let empWageUsingMap=new Map();
 let empDayWithHrsMap=new Map();
 //let empInput=Math.floor((Math.random()*10)%3);
@@ -38,6 +39,17 @@ while(day<=MAX_WORKING_DAYS && totalEmpHrs<=MAX_WORKING_HRS)
     empWageUsingMap.set(day,empWage);
     empDayWithHrsMap.set(day,empHrs);
     empDailyWageArray.push(empWage);
+    dayWithWageAndHrsArray.push (
+        {
+            DayNum:day,
+            Wage:empWage,
+            Hours:empHrs,
+            toString()
+            {
+                return "\nFor day : "+this.DayNum+" => Wage is:"+this.Wage+" Hours is:"+this.Hours;
+            }
+        }
+    );
     day++;
 }
 console.log("employee daily wage is :\n"+empDailyWageArray);
@@ -135,3 +147,5 @@ console.log("Showing the full workings days, part working days and no working da
 console.log("Full working days = "+fullWorkingDays);
 console.log("Part working days = "+partWorkingDays);
 console.log("Non working days ="+nonWorkingDays);
+
+console.log("uc 10 - storing the Day, Hours Worked and Wage Earned in a single object."+dayWithWageAndHrsArray);
