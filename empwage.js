@@ -9,6 +9,7 @@ let empHrs=0,totalEmpHrs=0;
 let empWage=0,totalEmpWage=0;
 
 let empDailyWageArray=new Array();
+let empWageUsingMap=new Map();
 //let empInput=Math.floor((Math.random()*10)%3);
 
 function GetEmpHours(empInput)
@@ -100,3 +101,11 @@ function howManyDaysWorked(days,dailyWage)
 }
 console.log(" How many days employee worked");
 console.log(empDailyWageArray.reduce(howManyDaysWorked,0));
+
+//UC8
+console.log("Daily wage in Map object : ");
+console.log(empWageUsingMap);
+
+console.log("total wage using Map oject :");
+let totalWageMap=Array.from(empWageUsingMap.values());
+console.log(totalWageMap.reduce(getTotalWageUsingReduce,0));
