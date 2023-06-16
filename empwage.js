@@ -27,7 +27,7 @@ function GetEmpHours(empInput)
             return empHrs=4;
             
         default:
-            //console.log("Employee is absent");
+            //console.log("Employee is absent")
             return empHrs=0;
     }
 }
