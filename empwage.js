@@ -56,7 +56,7 @@ console.log("employee daily wage is :\n"+empDailyWageArray);
 totalEmpWage=totalEmpHrs*EMP_RATE_PER_HR;
 console.log("Total Employee wage for "+(day-1)+" days or "+(totalEmpHrs)+" working Hrs is:"+totalEmpWage);
 
-//Daily Wage Array perform following operations using Array Helper Functions
+//Daily Wage Array perform following operations using Array Helper Function
 let total=0;
 function getTotalWage(dailyWage)
 {
